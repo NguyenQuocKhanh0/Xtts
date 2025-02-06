@@ -87,8 +87,8 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     MEL_NORM_LINK = "https://coqui.gateway.scarf.sh/hf-coqui/XTTS-v2/main/mel_stats.pth"
 
     # Set the path to the downloaded files
-    DVAE_CHECKPOINT = os.path.join(CHECKPOINTS_OUT_PATH, os.path.basename(DVAE_CHECKPOINT_LINK))
-    MEL_NORM_FILE = os.path.join(CHECKPOINTS_OUT_PATH, os.path.basename(MEL_NORM_LINK))
+    DVAE_CHECKPOINT = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/dvae.pth"
+    MEL_NORM_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/mel_stats.pth"
 
     # download DVAE files if needed
     if not os.path.isfile(DVAE_CHECKPOINT) or not os.path.isfile(MEL_NORM_FILE):
@@ -102,9 +102,9 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     XTTS_CONFIG_LINK = "https://coqui.gateway.scarf.sh/hf-coqui/XTTS-v2/main/config.json"
 
     # XTTS transfer learning parameters: You we need to provide the paths of XTTS model checkpoint that you want to do the fine tuning.
-    TOKENIZER_FILE = os.path.join(CHECKPOINTS_OUT_PATH, os.path.basename(TOKENIZER_FILE_LINK))  # vocab.json file
-    XTTS_CHECKPOINT = os.path.join(CHECKPOINTS_OUT_PATH, os.path.basename(XTTS_CHECKPOINT_LINK))  # model.pth file
-    XTTS_CONFIG_FILE = os.path.join(CHECKPOINTS_OUT_PATH, os.path.basename(XTTS_CONFIG_LINK))  # config.json file
+    TOKENIZER_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/vocab.json"  # vocab.json file
+    XTTS_CHECKPOINT = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/model.pth"  # model.pth file
+    XTTS_CONFIG_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/config.json"  # config.json file
 
     # download XTTS v2.0 files if needed
     if not os.path.isfile(TOKENIZER_FILE):
