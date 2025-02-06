@@ -147,7 +147,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     config = GPTTrainerConfig()
 
     config.load_json(XTTS_CONFIG_FILE)
-
+    config.save_best_after = 100000
     config.epochs = num_epochs
     config.output_path = OUT_PATH
     config.model_args = model_args
