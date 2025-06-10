@@ -102,10 +102,10 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     XTTS_CONFIG_LINK = "https://coqui.gateway.scarf.sh/hf-coqui/XTTS-v2/main/config.json"
 
     # XTTS transfer learning parameters: You we need to provide the paths of XTTS model checkpoint that you want to do the fine tuning.
-    TOKENIZER_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/vocab.json"  # vocab.json file
-    XTTS_CHECKPOINT = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/model.pth"  # model.pth file
-    XTTS_CONFIG_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/config.json"  # config.json file
-
+    TOKENIZER_FILE = "/kaggle/input/model-vi/model/vocab.json"  # vocab.json file
+    XTTS_CHECKPOINT = "/kaggle/input/model-vi/model/model.pth"  # model.pth file
+    XTTS_CONFIG_FILE = "/kaggle/input/model-vi/model/config.json"  # config.json file
+    
     # download XTTS v2.0 files if needed
     if not os.path.isfile(TOKENIZER_FILE):
         print(" > Downloading XTTS v2.0 tokenizer!")
