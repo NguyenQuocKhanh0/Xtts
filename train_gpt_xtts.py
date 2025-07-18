@@ -87,8 +87,8 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     MEL_NORM_LINK = "https://coqui.gateway.scarf.sh/hf-coqui/XTTS-v2/main/mel_stats.pth"
 
     # Set the path to the downloaded files
-    DVAE_CHECKPOINT = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/dvae.pth"
-    MEL_NORM_FILE = "/kaggle/input/model-origin/content/XTTSv2-Finetuning-for-New-Languages/checkpoints/XTTS_v2.0_original_model_files/mel_stats.pth"
+    DVAE_CHECKPOINT = "/kaggle/input/model_dvae/pytorch/default/1/dvae.pth"
+    MEL_NORM_FILE = "/kaggle/input/model_dvae/pytorch/default/1/mel_stats.pth"
 
     # download DVAE files if needed
     if not os.path.isfile(DVAE_CHECKPOINT) or not os.path.isfile(MEL_NORM_FILE):
