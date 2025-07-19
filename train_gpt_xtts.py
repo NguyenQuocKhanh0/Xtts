@@ -37,12 +37,14 @@ def create_xtts_trainer_parser():
                         help="Learning rate")
     parser.add_argument("--save_step", type=int, default=5000,
                         help="Save step")
+    parser.add_argument("--gpus", type=bool, default=True,
+                        help="multi-gpu")
 
     return parser
 
 
 
-def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_audio_length, max_text_length, lr, weight_decay, save_step):
+def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_audio_length, max_text_length, lr, weight_decay, save_step, gpus = True):
     #  Logging parameters
     RUN_NAME = "GPT_XTTS_FT"
     PROJECT_NAME = "XTTS_trainer"
@@ -170,7 +172,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     config.save_checkpoints = True
     config.print_eval = False
     config.optimizer = "AdamW"
-    config.optimizer_wd_only_on_weights = OPTIMIZER_WD_ONLY_ON_WEIGHTS
+    config.optimizer_wd_only_on_weights = gpus
     config.optimizer_params = {"betas": [0.9, 0.96], "eps": 1e-8, "weight_decay": weight_decay}
     config.lr = lr
     config.lr_scheduler = "MultiStepLR"
@@ -232,6 +234,7 @@ if __name__ == "__main__":
         max_text_length=args.max_text_length,
         max_audio_length=args.max_audio_length,
         save_step=args.save_step
+        gpus=args.gpus
     )
 
     print(f"Checkpoint saved in dir: {trainer_out_path}")
