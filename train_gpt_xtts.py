@@ -89,8 +89,8 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     MEL_NORM_LINK = "https://coqui.gateway.scarf.sh/hf-coqui/XTTS-v2/main/mel_stats.pth"
 
     # Set the path to the downloaded files
-    DVAE_CHECKPOINT = "/kaggle/input/model_dvae/pytorch/default/1/dvae.pth"
-    MEL_NORM_FILE = "/kaggle/input/model_dvae/pytorch/default/1/mel_stats.pth"
+    DVAE_CHECKPOINT = "/kaggle/working/XTTSv2-Finetuning-for-New-Languages/dvae.pth"
+    MEL_NORM_FILE = "/kaggle/working/XTTSv2-Finetuning-for-New-Languages/mel_stats.pth"
 
     # download DVAE files if needed
     if not os.path.isfile(DVAE_CHECKPOINT) or not os.path.isfile(MEL_NORM_FILE):
@@ -105,7 +105,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
 
     # XTTS transfer learning parameters: You we need to provide the paths of XTTS model checkpoint that you want to do the fine tuning.
     TOKENIZER_FILE = "/kaggle/input/model-vi/model/vocab.json"  # vocab.json file
-    XTTS_CHECKPOINT = "/kaggle/input/model-vi/model/model.pth"  # model.pth file
+    XTTS_CHECKPOINT = "/kaggle/working/XTTSv2-Finetuning-for-New-Languages/gpt.pth"  # model.pth file
     XTTS_CONFIG_FILE = "/kaggle/input/model-vi/model/config.json"  # config.json file
     
     # download XTTS v2.0 files if needed
@@ -193,7 +193,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     # init the trainer and 🚀
     trainer = Trainer(
         TrainerArgs(
-            restore_path=None,  # xtts checkpoint is restored via xtts_checkpoint key so no need of restore it using Trainer restore_path parameter
+            restore_path="/kaggle/working/XTTSv2-Finetuning-for-New-Languages/gpt.pth",  # xtts checkpoint is restored via xtts_checkpoint key so no need of restore it using Trainer restore_path parameter
             skip_train_epoch=False,
             start_with_eval=START_WITH_EVAL,
             grad_accum_steps=GRAD_ACUMM_STEPS
