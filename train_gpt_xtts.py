@@ -149,7 +149,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     config = GPTTrainerConfig()
 
     config.load_json(XTTS_CONFIG_FILE)
-    config.save_best_after = 1000000
+    config.save_best_after = 10000000
     config.epochs = num_epochs
     config.output_path = OUT_PATH
     config.model_args = model_args
@@ -206,17 +206,18 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     )
     trainer.fit()
 
-    # get the longest text audio file to use as speaker reference
-    samples_len = [len(item["text"].split(" ")) for item in train_samples]
-    longest_text_idx =  samples_len.index(max(samples_len))
-    speaker_ref = train_samples[longest_text_idx]["audio_file"]
-
-    trainer_out_path = trainer.output_path
-
-    # deallocate VRAM and RAM
-    del model, trainer, train_samples, eval_samples
-    gc.collect()
-
+    # # get the longest text audio file to use as speaker reference
+    # samples_len = [len(item["text"].split(" ")) for item in train_samples]
+    # longest_text_idx =  samples_len.index(max(samples_len))
+    # speaker_ref = train_samples[longest_text_idx]["audio_file"]
+    try:
+        trainer_out_path = trainer.output_path
+    
+        # deallocate VRAM and RAM
+        del model, trainer, train_samples, eval_samples
+        gc.collect()
+    except:
+        trainer_out_path="loi roi"
     return trainer_out_path
 
 if __name__ == "__main__":
