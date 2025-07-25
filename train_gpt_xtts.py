@@ -127,8 +127,8 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
 
     # init args and config
     model_args = GPTArgs(
-        max_conditioning_length=264600,  # 6 secs đã x2
-        min_conditioning_length=2205,  # 0.5 secs đã chia 5
+        max_conditioning_length=132300,  # 6 secs đã x2
+        min_conditioning_length=11025,  # 0.5 secs đã chia 5
         debug_loading_failures=False,
         max_wav_length=max_audio_length,  # ~11.6 seconds
         max_text_length=max_text_length,
@@ -193,7 +193,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
     # init the trainer and 🚀
     trainer = Trainer(
         TrainerArgs(
-            restore_path="/kaggle/working/XTTSv2-Finetuning-for-New-Languages/gpt.pth",  # xtts checkpoint is restored via xtts_checkpoint key so no need of restore it using Trainer restore_path parameter
+            restore_path= None,  # xtts checkpoint is restored via xtts_checkpoint key so no need of restore it using Trainer restore_path parameter
             skip_train_epoch=False,
             start_with_eval=START_WITH_EVAL,
             grad_accum_steps=GRAD_ACUMM_STEPS
